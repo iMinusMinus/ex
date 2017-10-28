@@ -25,14 +25,15 @@
 		return true;
 	}
 >> 余额代偿系统	
-	![za-fcp-prebiz-yedc][1]	
+![za-fcp-prebiz-yedc][1]	
 >> 马上花系统	
-	![creditpre-retail][2]
-	![creditpre-retail][3]
+![creditpre-retail][2]
+![creditpre-retail][3]
 >> 保险某系统
-	![za-ccp-insurance-share][4]
-	![za-ccp-insurance-share][5]
-	![za-ccp-insurance-share][6]
+![za-ccp-insurance-share][4]
+![za-ccp-insurance-share][5]
+![za-ccp-insurance-share][6]
+
 > 不会驾驭轮子的程序员不是好司机
 
 >>	
@@ -49,7 +50,7 @@
 >>	
     //Spring方式
 	private boolean validate(Errors error, Request req) {
-		ValidationUtils.rejectIfEmpty(error, "fieldName", "{classFullQualifiedName.fieldName.ConstraintType}", "XX不能为空");
+		ValidationUtils.rejectIfEmpty(error, "fieldName", "{classFullQualifiedName.fieldName.ConstraintType.message}", "XX不能为空");
 		ValidationUtils.invokeValidator(new RequestValidator(), req, error);
 		return error.hasError();
 	}
@@ -64,8 +65,8 @@
 			//校验字段
 		}
 	}
------------------------------------------------------------------------------------------------------------------------
-__ 遇到的问题 __
+----------------------------------------------------------------------------------------------------------------------------------------
+**遇到的问题**
 
 - 多字段校验
 
@@ -95,7 +96,7 @@ __ 遇到的问题 __
 
 > 苦海无涯，回头是岸!
 
------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
 
 ##标准
    请参考[Bean Validation][]
