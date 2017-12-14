@@ -82,7 +82,7 @@ __ 遇到的问题 __
 ##标准
 
    请参考[Bean Validation]
-   [Bean Validation]: http://beanvalidation.org/specification/ "Specification hosted on Red Hat"
+   [Bean Validation]:http://beanvalidation.org/specification/ "Specification hosted on Red Hat"
    
 1. JSR 303 Bean Validation1.0
 
