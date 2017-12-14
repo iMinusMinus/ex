@@ -80,6 +80,7 @@ __ 遇到的问题 __
 -----------------------------------------------------------------------------------------------------------------------
 
 ##标准
+
    请参考[Bean Validation]
    [Bean Validation]: http://beanvalidation.org/specification/ "Specification hosted on Red Hat"
    
@@ -110,10 +111,10 @@ __ 遇到的问题 __
 	
 	EL
 	
-	![自定义注解](https://github.com/iMinusMinus/ex/blob/master/images/validation/crossContraint.png?raw=true)
-	![自定义验证器](https://github.com/iMinusMinus/ex/blob/master/images/validation/crossValidator.png?raw=true)
-	![跨参数校验](https://github.com/iMinusMinus/ex/blob/master/images/validation/crossTest.png?raw=true)
-	![综合：message, EL & ConvertGroup](https://github.com/iMinusMinus/ex/blob/master/images/validation/mix.png?raw=true)
+   ![](https://github.com/iMinusMinus/ex/blob/master/images/validation/crossContraint.png?raw=true "自定义注解")
+   ![自定义验证器](https://github.com/iMinusMinus/ex/blob/master/images/validation/crossValidator.png?raw=true)
+   ![跨参数校验](https://github.com/iMinusMinus/ex/blob/master/images/validation/crossTest.png?raw=true)
+   ![综合：message, EL & ConvertGroup](https://github.com/iMinusMinus/ex/blob/master/images/validation/mix.png?raw=true)
 	
 3. JSR 380 Bean Validation2.0
 
@@ -188,4 +189,5 @@ __ 遇到的问题 __
 		}
 		
 	}
-	![AOP Validation](https://github.com/iMinusMinus/ex/blob/master/images/validation/aop.png?raw=true)
+
+   ![AOP Validation](https://github.com/iMinusMinus/ex/blob/master/images/validation/aop.png?raw=true)
