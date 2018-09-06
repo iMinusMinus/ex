@@ -1,6 +1,6 @@
 校验
 ======
-##曾经
+## 曾经
 > 自己动手，丰衣足食
 
     public Response entry(Request req) {
@@ -65,7 +65,7 @@
 		}
 	}
 -----------------------------------------------------------------------------------------------------------------------
-__ 遇到的问题 __
+__遇到的问题__
 
 1. 分组校验。
 
@@ -79,7 +79,7 @@ __ 遇到的问题 __
 
 -----------------------------------------------------------------------------------------------------------------------
 
-##标准
+## 标准
 
    请参考[Bean Validation](http://beanvalidation.org/specification/ "Specification hosted on Red Hat")
    
@@ -104,11 +104,11 @@ __ 遇到的问题 __
 
     @ValidateOnExecution
     
-	@SupportedValidationTarget
+    @SupportedValidationTarget
     
-	@ConvertGroup
+    @ConvertGroup
 	
-	EL
+    EL
 	
    ![](https://github.com/iMinusMinus/ex/blob/master/images/validation/crossContraint.png?raw=true "自定义注解")
    ![自定义验证器](https://github.com/iMinusMinus/ex/blob/master/images/validation/crossValidator.png?raw=true)
@@ -139,7 +139,7 @@ __ 遇到的问题 __
 -----------------------------------------------------------------------------------------------------------------------
 
 
-##应用
+## 应用
 
 1.Spring MVC
 
@@ -152,7 +152,6 @@ __ 遇到的问题 __
 	
 		@RequestMapping(value="/test")
 		@ResponseBody
-		//@ExceptionHandler(BindException.class)
 		public AnyResponse(@Valid AnyRequest request, BindingResult br) {
 			//如果request校验出不符合约束字段，br.hasError
 		}
