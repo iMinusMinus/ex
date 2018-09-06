@@ -142,7 +142,7 @@ __遇到的问题__
 ## 应用
 
 1. Spring MVC
-
+>>
 	/**
 	 * 使用代码示例
 	 */
@@ -165,7 +165,7 @@ __遇到的问题__
    ![Spring MVC validate](https://github.com/iMinusMinus/ex/blob/master/images/validation/validate.png?raw=true)
 	
 2. HSF AOP
-
+>>
 	//在调用实际方法前进行校验，有违反约束则抛出异常
 	@Aspectj
 	@Component
