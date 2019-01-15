@@ -116,7 +116,7 @@ sudo mount /dev/sda /home/pi/nas
 |文件格式|EXT4               |BTRFS		                   |BTRFS                        |BTRFS                    |
 |文件协议|NFS, SMB, AFP      |SMB, AFP, NFS                |DLNA, NFS, SMB               |SMB, AFS, NFS, DLNA      |
 |内置应用|                   |nginx, php, htppd, pg, python|qthttpd, MariaDB, php, python|nginx, php, mysql, python|
-|WebUI   |![OMV](https://github.com/iMinusMinus/ex/tree/master/images/raspberry%20pi/OMV.PNG)|![DMS](https://github.com/iMinusMinus/ex/tree/master/images/raspberry%20pi/DMS.PNG)|![QTS](https://github.com/iMinusMinus/ex/tree/master/images/raspberry%20pi/QTS.PNG)|![TOS](https://github.com/iMinusMinus/ex/tree/master/images/raspberry%20pi/TOS.PNG)|
+|WebUI   |![OMV](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/OMV.PNG?raw=true)|![DMS](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/DSM.PNG?raw=true)|![QTS](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/QTS.PNG?raw=true)|![TOS](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/TOS.PNG?raw=true)|
 
 在安装OMV时，出现命令找不到的情况，重新安装OMV相关package解决：
  
