@@ -167,15 +167,11 @@ sudo mount /dev/sda /home/pi/nas
      ```sh
      sudo vi /etc/minidlna.conf
      #修改媒体文件目录
-     media_dir=APV,/home/pi/nas/media
-     #修改db（sqlite）目录
-     db_dir=/var/lib/minidlna
-     #修改服务器ip，假设本机ip为68.76.78.65
-     listening_ip=68.76.78.65
-     #修改端口
-     port=8200
+     media_dir=/home/pi/nas/media
      #修改名称，用于其它设备网络发现识别
-     friendly_name=Raspberry Pi DLNA
+     friendly_name=Raspberry Pi MiniDLNA
+     #根据需要修改最大连接数
+     max_connections=5
      ```
      ```sh
      #重启minidlna服务
@@ -224,22 +220,24 @@ Kodi是一个全平台家庭媒体解决方案开源项目。以Android手机为
      
    + 为资料库添加源
    
+     注意共享的目录和文件不能存在乱码，否则Kodi不显示。
+   
      Kodi支持SMB、UPnP（即DLNA）、NFS等多种来源。比如SMB：  
      添加视频 --> 浏览 --> Windows网络（SMB）  
      确定后再选择 "smb://" ，弹出输入框，填入SMB服务器IP即可。
      
-   NFS添加后能只能显示出部分目录，尚未解决。  
+     NFS添加后提示无法连接网络服务器，尚未解决。  
      
-   UPnP添加后，不显示任何信息，尚未解决。
+     UPnP添加后提示无法连接网络服务器，尚未解决。
 
 9. NAS系统介绍
 
 |         |OpenMediaVault    |群晖DMS                       |威联通QTS                   |铁马威TOS                |
 |--------|:-----------------:|:---------------------------:|:---------------------------:|------------------------:|
 |基础系统|Debian             |Debian?                      |Linux                        |busybox?                 |
-|文件格式|EXT4               |BTRFS		                   |BTRFS                        |BTRFS                    |
+|文件格式|EXT4               |BTRFS		                     |BTRFS                        |BTRFS                    |
 |文件协议|NFS, SMB, AFP      |SMB, AFP, NFS                |DLNA, NFS, SMB               |SMB, AFS, NFS, DLNA      |
-|内置应用|                   |nginx, php, htppd, pg, python|qthttpd, MariaDB, php, python|nginx, php, mysql, python|
+|内置应用|nginx, php, python |nginx, php, htppd, pg, python|qthttpd, MariaDB, php, python|nginx, php, mysql, python|
 |WebUI   |![OMV](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/OMV.PNG?raw=true)|![DMS](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/DSM.PNG?raw=true)|![QTS](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/QTS.PNG?raw=true)|![TOS](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/TOS.PNG?raw=true)|
 
 在安装OMV时，出现命令找不到的情况，重新安装OMV相关package解决：
