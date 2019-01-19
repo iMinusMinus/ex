@@ -70,6 +70,7 @@ sudo mount /dev/sda /home/pi/nas
 |SMB |基于NetBIOS，Windows兼容|
 |DLNA|速度快，适用于多媒体播放|
 
+5.NFS
 
    * 安装NFS
 
@@ -96,29 +97,135 @@ sudo mount /dev/sda /home/pi/nas
      systemctl status nfs-server.service
      ```
 
-5. Windows客户端配置
+   * Windows客户端配置
 
-   + 启用NFS支持
+     + 启用NFS支持
+     
+       控制面板 --> 程序和功能 --> 启用或关闭Windows功能 --> NFS服务
+     
+     + 挂载网络驱动
+     
+       ```cmd
+       mount 192.168.1.99:/home/pi/nas X:
+       #如果想开机自动挂载，可在计算机选择“映射网络驱动器”，在弹出窗口选择驱动器盘符和远程目录。
+       ```
+       
+      + 区域设置
+      
+        控制面板 --> 区域 --> 管理 --> 更改系统区域设置 --> Beta版：使用Unicode UTF-8提供全球语言支持 
+       
+        勾选后重启。
+        
+      设置完成后，可以看到如下效果图(IP及目录信息被擦除)：  
+      ![NFS](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/NFS.png?raw=true)
+6. SMB
 
-     控制面板 --> 程序和功能 --> 启用或关闭Windows功能 --> NFS服务
-
-   + 挂载网络驱动
-
-     ```cmd
-     mount 192.168.1.99:/home/pi/nas X:
-     #如果想开机自动挂载，可在计算机选择“映射网络驱动器”，在弹出窗口选择驱动器盘符和远程目录。
+   * 安装samba
+     ```sh
+     sudo apt-get install samba
+     ```
+   * 配置samba
+     ```sh
+     #请参考https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html
+     sudo vi /etc/samba/smb.conf
+     #public的配置用于只读，share的配置用于读写，且只授权给用户pi
+     [public]
+     comment = Raspberry Pi SAMBA
+     path = /home/pi/nas
+     browseable = yes
+     read only = yes
+     [share]
+     comment = SMB
+     path = /home/pi/nas
+     browseable = yes
+     writable = yes
+     create mask = 0744
+     directory mask = 0755
+     write list = pi
+     ```
+     ```sh
+     #检查配置是否正确
+     testparm
+     #将用户加入到samba用户（系统用户必须已创建）
+     sudo smbpasswd -a pi
+     #重启smb服务
+     sudo /etc/init.d/samba restart
      ```
      
-    + 区域设置
-    
-      控制面板 --> 区域 --> 管理 --> 更改系统区域设置 --> Beta版：使用Unicode UTF-8提供全球语言支持 
-     
-      勾选后重启。
-      
-    设置完成后，可以看到如下效果图(IP及目录信息被擦除)：  
-    ![NFS](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/NFS.png?raw=true)
+    到Windows系统，地址栏输入SMB服务器IP，显示效果如下（public可直接访问，share需要输入用户名、密码）：  
+    ![SMB](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/SMB.png?raw=true)
 
-6. NAS系统介绍
+7. DLNA
+
+   * 安装minidlna
+     ```sh
+     apt-get install minidlna
+     ```
+   * 配置minidlna
+     ```sh
+     sudo vi /etc/minidlna.conf
+     #修改媒体文件目录
+     media_dir=APV,/home/pi/nas/media
+     #修改db（sqlite）目录
+     db_dir=/var/lib/minidlna
+     #修改服务器ip，假设本机ip为68.76.78.65
+     listening_ip=68.76.78.65
+     #修改端口
+     port=8200
+     #修改名称，用于其它设备网络发现识别
+     friendly_name=Raspberry Pi DLNA
+     ```
+     ```sh
+     #重启minidlna服务
+     sudo service minidlna restart
+     #查看状态(Active行状态为"active (runing)"代表运行正常)
+     service minidlna status
+     #开机自启动
+     sudo update-rc.d minidlna defaults
+     #取消开机自启动
+     sudo update-rc.d -f minidlna remove
+     #停止DLNA服务
+     #sudo service minidlna stop
+     #卸载DLNA
+     #sudo apt-get remove --purge minidlna
+     ```
+   * 配置minidlna
+   
+      - HTTP
+      
+        浏览器输入ip以及端口，比如 http://68.76.78.65:8200 ，查看是否显示媒体库信息或已连接信息。
+        
+      - WMP
+      
+        需要先启动相关服务。
+        ```cmd
+        sc start unpnhost
+        sc start WMPNetworkSvc
+        sc start SSDPSRV
+        ```
+
+8. Kodi
+
+Kodi是一个全平台家庭媒体解决方案开源项目。以Android手机为例：  
+Kodi本身支持多语言，但是设置起来一言难尽。
+
+   + 界面语言设置
+   
+     Interface --> Regional --> Language --> Chinese(Simple)  
+     此时会全屏乱码，不要惊慌，选择原来Skin下面的Font位置，选择Arial，一切变得亲切起来。  
+     此时，可以把区域的字符集也改成Chinese Simplified(GBK)。
+     
+   + 为资料库添加源
+   
+     Kodi支持SMB、UPnP（即DLNA）、NFS等多种来源。比如SMB：  
+     添加视频 --> 浏览 --> Windows网络（SMB）  
+     确定后再选择 "smb://" ，弹出输入框，填入SMB服务器IP即可。
+     
+   NFS添加后能只能显示出部分目录，尚未解决。  
+     
+   UPnP添加后，不显示任何信息，尚未解决。
+
+9. NAS系统介绍
 
 |         |OpenMediaVault    |群晖DMS                       |威联通QTS                   |铁马威TOS                |
 |--------|:-----------------:|:---------------------------:|:---------------------------:|------------------------:|
