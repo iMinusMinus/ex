@@ -118,6 +118,19 @@ sudo mount /dev/sda /home/pi/nas
        
         勾选后重启。
         
+      + 权限说明
+      
+        NFS共享出来的目录所有者是root，所以在Windows客户端默认没有权限写入。  
+        解决办法有两种：  
+        第一种，在NFS服务器上给所有用户读写权限。
+        ```sh
+        sudo chmod 777 /srv/nfs4/share
+        ```
+        
+        第二种，让Windows默认以root用户挂载，同时将NFS服务器共享选项设置为不映射root用户（no_root_squash）。  
+        
+        在注册表HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Default项下新增两个DWORD，名称为AnonymousUid和AnonymousGid，值都是0。
+        
       设置完成后，可以看到如下效果图(IP及目录信息被擦除)：  
       ![NFS](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/NFS.png?raw=true)
 6. SMB
