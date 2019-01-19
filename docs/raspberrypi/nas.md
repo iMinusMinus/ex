@@ -70,6 +70,8 @@ sudo mount /dev/sda /home/pi/nas
 |SMB |基于NetBIOS，Windows兼容|
 |DLNA|速度快，适用于多媒体播放|
 
+100Mb局域网下，实测SMB速度在13-26Mb/s，平均17Mb/s，而NFS稳定在10-12Mb/s。（本人表示很奇怪，理论上最大速度当为100Mb/8=12.5MB/s，SMB传输速度为何能高出）
+
 5.NFS
 
    * 安装NFS
@@ -207,12 +209,17 @@ sudo mount /dev/sda /home/pi/nas
 8. Kodi
 
 Kodi是一个全平台家庭媒体解决方案开源项目。以Android手机为例：  
-Kodi本身支持多语言，但是设置起来一言难尽。
 
    + 界面语言设置
    
+     Kodi本身支持多语言，但是新手在设置时容易掉坑。
+   
      Interface --> Regional --> Language --> Chinese(Simple)  
-     此时会全屏乱码，不要惊慌，选择原来Skin下面的Font位置，选择Arial，一切变得亲切起来。  
+     此时会全屏乱码，不要惊慌，选择原来Skin下面的Fonts位置，选择Arial，一切变得亲切起来。 
+     回顾一下：  
+     ![Skin](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/Kodi-Skin.png?raw=true)
+     ![Region](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/Kodi-Region.png?raw=true)
+     ![中文界面](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/KodiCN.png?raw=true)
      此时，可以把区域的字符集也改成Chinese Simplified(GBK)。
      
    + 为资料库添加源
