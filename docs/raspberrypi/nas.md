@@ -6,7 +6,8 @@
 通过官网可以跳转到指定的淘宝卖家店铺。按需选择即可。
 个人建议附件只需要散热器、电源、多层外壳就好。  
 如果没有microSD卡及配套的读卡器，建议同时购买（SD卡容量建议4G以上）。  
-如果有单独的显示器，可考虑额外购置HDMI线。
+如果有单独的显示器，可考虑额外购置HDMI线。  
+个人购买的是Raspberry Pi B3+，使用的笔记本系统为Windows 10。
 
 0. Raspbian
 
@@ -99,15 +100,23 @@ sudo mount /dev/sda /home/pi/nas
 
    + 启用NFS支持
 
-    控制面板 --> 程序和功能 --> 启用或关闭Windows功能 --> NFS服务
+     控制面板 --> 程序和功能 --> 启用或关闭Windows功能 --> NFS服务
 
    + 挂载网络驱动
 
      ```cmd
      mount 192.168.1.99:/home/pi/nas X:
      #如果想开机自动挂载，可在计算机选择“映射网络驱动器”，在弹出窗口选择驱动器盘符和远程目录。
-     #注意不要使用中文目录或文件，否则会出现乱码
      ```
+     
+    + 区域设置
+    
+      控制面板 --> 区域 --> 管理 --> 更改系统区域设置 --> Beta版：使用Unicode UTF-8提供全球语言支持 
+     
+      勾选后重启。
+      
+    设置完成后，可以看到如下效果图(IP及目录信息被擦除)：  
+    ![NFS](https://github.com/iMinusMinus/ex/blob/master/images/raspberry%20pi/NFS.png?raw=true)
 
 6. NAS系统介绍
 
@@ -133,8 +142,12 @@ omv-firstaid
 
 2. [win32diskimager下载地址](https://sourceforge.net/projects/win32diskimager/files/latest/download)
 
-3. [群晖在线体验demo](https://demo.synology.cn/zh-cn)
+3. [XShell下载地址](https://www.netsarang.com/zh/free-for-home-school/)
 
-4. [威联通在线体验demo](https://www.qnap.com/zh-cn/live-demo)
+4. [OMV下载地址](http://www.openmediavault.org/download.html)
 
-5. [铁马威在线体验demo](https://www.terra-master.com/us/live-demo/)
+5. [群晖在线体验demo](https://demo.synology.cn/zh-cn)
+
+6. [威联通在线体验demo](https://www.qnap.com/zh-cn/live-demo)
+
+7. [铁马威在线体验demo](https://www.terra-master.com/us/live-demo/)
