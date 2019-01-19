@@ -58,7 +58,7 @@ sudo mount /dev/sda /home/pi/nas
 #sudo chmod -R 777 /mnt/nas 
 #如果需要开机启动自动mount，则
 #sudo vi /etc/fstab
-#/dev/sda    /mnt/nas    nfs    auto,noatime,rw,sync    0    2
+#/dev/sda    /mnt/nas    ext4    auto,noatime,rw,sync    0    2
 #sudo reboot
 ```
 
