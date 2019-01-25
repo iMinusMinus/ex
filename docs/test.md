@@ -5,12 +5,12 @@
 |         |     JUnit     |     TestNG     |
 |---------|:-------------:|:---------------|
 |标记测试 |@Test          |@Test           |
-|<suite>内所有测试前执行|NA|@BeforeSuite|
-|<suite>内所有测试后执行|NA|@AfterSuite|
-|<test>内所有测试前执行|NA|@BeforeTest|
-|<test>内所有测试后执行|NA|@AfterTest|
-|<groups>内所有测试前执行|NA|@BeforeGroups|
-|<groups>内所有测试前执行|NA|@AfterGroups|
+|\<suite>内所有测试前执行|NA|@BeforeSuite|
+|\<suite>内所有测试后执行|NA|@AfterSuite|
+|\<test>内所有测试前执行|NA|@BeforeTest|
+|\<test>内所有测试后执行|NA|@AfterTest|
+|\<groups>内所有测试前执行|NA|@BeforeGroups|
+|\<groups>内所有测试前执行|NA|@AfterGroups|
 |测试类第一个测试前执行|@BeforeClass|@BeforeClass|
 |测试类最后一个测试后执行|@AfterClass|@AfterClass|
 |每个测试前执行|@Before|@BeforeMethod|
