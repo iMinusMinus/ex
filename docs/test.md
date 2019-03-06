@@ -75,8 +75,32 @@ verify=>operation: EasyMock.verify|test
 s->m->ts->when->then->times->replay->test->verify->e
 ```
 
-_EasyMock要求被注入的测试类必须手动生成测试对象。EasyMock不支持部分mock。EasyMock严格按照replay、verify流程，Mockito无需replay。_
+_EasyMock要求被注入的测试类必须手动生成测试对象，Mockito可自动生成测试对象。EasyMock严格按照replay、verify流程，Mockito无需replay。_  
+_Mockito的部分Mock需要手动生成对象，EasyMock不支持部分mock。_  
 _EasyMock和Mockito都支持任意参数的mock，同时都要求同一个方法只要有一个是任意参数时，其它参数也必须是任意参数，而不能指定。_
+
+```java
+@RunWith(MockitoJUnitRunner.class)
+public class MockTest {
+
+    @InjectMocks
+    private TestSubject ts;// = new TestSubject();
+    
+    @Spy
+    private InjectableMockableObject imo = new InjectableMockableObject();
+    
+    @Mock
+    private MockableObject mo;
+    
+    @Test
+    public void testOriginMethodName() {
+        Mockito.when(mo.doX(Mockito.any())).thenReturn(1);
+	//imo.doY(..);
+	Mockito.doNothing().when(imo).doZ(Mockito.anyString(), Mockito.any());
+	Assert.assertTrue(ts.exec());
+    }
+}
+```
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -107,13 +131,13 @@ public class XxxTest {
     @InjectMocks
     private TestSubject testSubject;
 	
-	@Test
-	public void testXyz() {
-	    PowerMockito.mockStatic(CannotOverride.class);
-		PowerMockito.when(CannotOverride.staticMethod()).thenReturn(null);
-		testSubject.exec(params);
-		//Assert.assert*
-	}
+    @Test
+    public void testXyz() {
+	PowerMockito.mockStatic(CannotOverride.class);
+	PowerMockito.when(CannotOverride.staticMethod()).thenReturn(null);
+	testSubject.exec(params);
+	//Assert.assert*
+    }
     
 }
 ```
@@ -126,16 +150,16 @@ public class XxooTest {
     private TestSubject testSubject;
 
     @Test
-	public void testAbc() {
+    public void testAbc() {
 	final string expect = "expectationResult";
 	new Expectations(){
-		{
-			Klazz.staticMethod(any);
-			result = expect;
-		}
+	    {
+	        Klazz.staticMethod(any);
+		result = expect;
+	    }
 	};
 	Assert.assertEquals(expect, testSubject.exec(params));
-	}
+    }
 
 }
 ```
