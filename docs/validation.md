@@ -3,27 +3,30 @@
 ## 曾经
 > 自己动手，丰衣足食
 
+```java
     public Response entry(Request req) {
         boolean valid = validate(req);
         if(!valid) {
-    		throw new ValidationException();//type 1
-			/* type 2
-			return new Response(ResultCode.INVALID_PARAMETERS);
-			*/
-		}
+    	    throw new ValidationException();//type 1
+	    /* type 2
+	    return new Response(ResultCode.INVALID_PARAMETERS);
+	    */
+	}
         //其它代码		
-	}
+    }
 	
-	private boolean validate(Request req) {
-	    if(req.getField1() == null) {
-		    return false;
-		}
-		if(field.getField2() < 0 || field.getField2() > 10) {
-			return false;
-		}
-		// 其它字段各种校验
-		return true;
+    private boolean validate(Request req) {
+        if(req.getField1() == null) {
+	    return false;
 	}
+	if(field.getField2() < 0 || field.getField2() > 10) {
+	    return false;
+	}
+	// 其它字段各种校验
+	return true;
+    }
+```    
+    
 >> 余额代偿系统	
 	![za-fcp-prebiz-yedc](https://github.com/iMinusMinus/ex/blob/master/images/validation/yedc.png?raw=true)
 >> 马上花系统	
@@ -35,35 +38,37 @@
 	![za-ccp-insurance-share](https://github.com/iMinusMinus/ex/blob/master/images/validation/policy3.png?raw=true)
 > 不会驾驭轮子的程序员不是好司机
 
->>	
-    // Google方式
-	private boolean validate(Request req) {
-		try {
-			Preconditions.checkNotNull(req.getField());
-			//其它字段各种校验
-			return true;
-		} catch(Exception e) {
-			return false;
-		}	
-	}
->>	
-    //Spring方式
-	private boolean validate(Errors error, Request req) {
-		ValidationUtils.rejectIfEmpty(error, "fieldName", "{classFullQualifiedName.fieldName.ConstraintType}", "XX不能为空");
-		ValidationUtils.invokeValidator(new RequestValidator(), req, error);
-		return error.hasError();
-	}
+>>Google方式	
+```java 
+    private boolean validate(Request req) {
+        try {
+	    Preconditions.checkNotNull(req.getField());
+	    //其它字段各种校验
+	    return true;
+	} catch(Exception e) {
+	    return false;
+	}	
+    }
+```    
+>>Spring方式	
+```java
+    private boolean validate(Errors error, Request req) {
+        ValidationUtils.rejectIfEmpty(error, "fieldName", "{classFullQualifiedName.fieldName.ConstraintType}", "XX不能为空");
+        ValidationUtils.invokeValidator(new RequestValidator(), req, error);
+	return error.hasError();
+    }
     
-	public static class RequestValidator implements org.springframework.validation.Validator {
+    public static class RequestValidator implements org.springframework.validation.Validator {
 	
-		public boolean supports(Class<?> clazz) {
-			return Request.class.isAssignableFrom(clazz);
-		}
-		
-		public void validate(Object target, Errors errors) {
-			//校验字段
-		}
+        public boolean supports(Class<?> clazz) {
+	    return Request.class.isAssignableFrom(clazz);
 	}
+		
+	public void validate(Object target, Errors errors) {
+	    //校验字段
+	}
+    }
+```    
 -----------------------------------------------------------------------------------------------------------------------
 __遇到的问题__
 
@@ -142,22 +147,24 @@ __遇到的问题__
 ## 应用
 
 1. Spring MVC
->>
+
+```java
 	/**
 	 * 使用代码示例
 	 */
-	@Controller
-	@RequestMapping("/rest")
-	public class RestController {
+    @Controller
+    @RequestMapping("/rest")
+    public class RestController {
 	
-		@RequestMapping(value="/test")
-		@ResponseBody
-		public AnyResponse(@Valid AnyRequest request, BindingResult br) {
-			//如果request校验出不符合约束字段，br.hasError
-		}
-	
+        @RequestMapping(value="/test")
+	@ResponseBody
+	public AnyResponse(@Valid AnyRequest request, BindingResult br) {
+	    //如果request校验出不符合约束字段，br.hasError
 	}
 	
+    }
+```
+
 原理：HandlerMapping --> HandlerExecutorChain --> HandlerAdapter.handle --> AnnotationMethodHandlerAdapter.invokeHandlerMethod --> HandlerMethodInvoker.resolveHandlerArguments	
    ![Spring MVC argument](https://github.com/iMinusMinus/ex/blob/master/images/validation/arg1.png?raw=true)
    ![Spring MVC data binder](https://github.com/iMinusMinus/ex/blob/master/images/validation/arg2.png?raw=true)
@@ -165,27 +172,26 @@ __遇到的问题__
    ![Spring MVC validate](https://github.com/iMinusMinus/ex/blob/master/images/validation/validate.png?raw=true)
 	
 2. HSF AOP
->>
-	//在调用实际方法前进行校验，有违反约束则抛出异常
-	@Aspectj
-	@Component
-	public class ValidationAspect {
+```java
+    //在调用实际方法前进行校验，有违反约束则抛出异常
+    @Aspectj
+    @Component
+    public class ValidationAspect {
 	
-	    @Resource
-	    private Validator validator;
+        @Resource
+	private Validator validator;
 		
-		@Pointcut("execution (* packageName.className.*(..))")
-		private void pointcut() {
-		}
-		
-		@Before(value = "pointcut() && args(request, ..)")
-		public void advice(Object request) {
-		    Set<?> violations = validator.validate(request, Default.class);
-            if (!violations.isEmpty()) {
-                throw new ValidationException();
-            }
-		}
-		
+	@Pointcut(value = "execution (* *(@javax.validation.Valid (*))) && args(obj", argNames="obj")
+	private void pointcut(Object obj) {
 	}
+		
+	@Before(value = "pointcut(obj)", argNames="obj")
+	public void advice(Object obj) {
+	    Set<?> violations = validator.validate(obj, Default.class);
+            if (!violations.isEmpty()) {
+                throw new ValidationException(violations;
+            }
+	}
+		
+    }
 
-   ![AOP Validation](https://github.com/iMinusMinus/ex/blob/master/images/validation/aop.png?raw=true)
