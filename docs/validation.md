@@ -130,16 +130,13 @@ __遇到的问题__
 	
 	![容器泛型注解](https://github.com/iMinusMinus/ex/blob/master/images/validation/generic.png?raw=true)
 	
-<table>
-	<thead><tr><th>特性</th><th>Hibernate Validator</th><th>Apache BVal</th></tr></thead>
-	<tbody>
-		<tr><td>Annotation</td><td>&#10004;</td><td>&#10004;</td></tr>
-		<tr><td>xml</td><td>&#10004;</td><td>&#10004;</td></tr>
-		<tr><td>1.0</td><td>Hibernat Validator 4.x</td><td>bval-jsr303</td></tr>
-		<tr><td>1.1</td><td>Hibernat Validator 5.x</td><td>bval-jsr</td></tr>
-		<tr><td>2.0</td><td>Hibernat Validator 6.x</td><td>&#10006;</td></tr>
-	</tbody>
-</table>
+|特性|Hibernate Validator|Apache BVal|
+|:------|:------:|:------:|
+|Annotation|&#10004;|&#10004;|
+|xml|&#10004;|&#10004;|
+|1.0|Hibernat Validator 4.x|bval-jsr303|
+|1.1|Hibernat Validator 5.x|bval-jsr|
+|2.0|Hibernat Validator 6.x|&#10006;|
 
 -----------------------------------------------------------------------------------------------------------------------
 
@@ -149,9 +146,9 @@ __遇到的问题__
 1. Spring MVC
 
 ```java
-	/**
-	 * 使用代码示例
-	 */
+    /**
+     * 使用代码示例
+     */
     @Controller
     @RequestMapping("/rest")
     public class RestController {
@@ -181,7 +178,7 @@ __遇到的问题__
         @Resource
 	private Validator validator;
 		
-	@Pointcut(value = "execution (* *(@javax.validation.Valid (*))) && args(obj", argNames="obj")
+	@Pointcut(value = "execution (* *(@javax.validation.Valid (*))) && args(obj)", argNames="obj")
 	private void pointcut(Object obj) {
 	}
 		
@@ -189,7 +186,7 @@ __遇到的问题__
 	public void advice(Object obj) {
 	    Set<?> violations = validator.validate(obj, Default.class);
             if (!violations.isEmpty()) {
-                throw new ValidationException(violations;
+                throw new ValidationException(violations);
             }
 	}
 		
