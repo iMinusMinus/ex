@@ -173,6 +173,7 @@ __遇到的问题__
     //在调用实际方法前进行校验，有违反约束则抛出异常
     @Aspectj
     @Component
+    @Order(Ordered.HIGHEST_PRECEDENCE + 5)//不能是最高优先级，不然无法expose，@see ExposeInvocationInterceptor
     public class ValidationAspect {
 	
         @Resource
@@ -186,7 +187,7 @@ __遇到的问题__
 	public void advice(Object obj) {
 	    Set<?> violations = validator.validate(obj, Default.class);
             if (!violations.isEmpty()) {
-                throw new ValidationException(violations);
+                throw new ConstraintViolationException(violations);
             }
 	}
 		
