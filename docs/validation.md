@@ -168,7 +168,9 @@ __遇到的问题__
    ![Spring MVC bind](https://github.com/iMinusMinus/ex/blob/master/images/validation/bind.png?raw=true)
    ![Spring MVC validate](https://github.com/iMinusMinus/ex/blob/master/images/validation/validate.png?raw=true)
 	
-2. HSF AOP
+2. AOP
+
+HTTP请求可以通过Filter来做校验。RPC请求，如果框架不带Filter API，只能通过AOP来完成校验。
 ```java
     //在调用实际方法前进行校验，有违反约束则抛出异常
     @Aspectj
@@ -183,9 +185,9 @@ __遇到的问题__
 	private void pointcut(Object obj) {
 	}
 		
-	@Before(value = "pointcut(obj)", argNames="obj")
-	public void advice(Object obj) {
-	    Set<?> violations = validator.validate(obj, Default.class);
+	@Before(value = "pointcut(request)", argNames="request")
+	public void advice(Object request) {
+	    Set<?> violations = validator.validate(request, Default.class);
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);
             }
