@@ -8,15 +8,15 @@
 |跨语言|      |       |      |    |    |
 
 ## JSON
-|     |Jackson |FastJson|Gson   |
+|     |Jackson(com.fasterxml.jackson) |FastJson(com.alibaba.fastjson)|Gson(com.google.gson)|
 |:----|:-------|:-----|:-------|
-|注释 |com.fasterxml.jackson.core.JsonParser.Feature#ALLOW_COMMENTS|com.alibaba.fastjson.parser.Feature#AllowComment|built-in|
-|单引号|com.fasterxml.jackson.core.JsonParser.Feature#ALLOW_SINGLE_QUOTES|com.alibaba.fastjson.parser.Feature#AllowSingleQuotes,com.alibaba.fastjson.serializer.SerializerFeature#UseSingleQuotes|built-in|
-|泛型 |com.fasterxml.jackson.core.type.TypeReference|com.alibaba.fastjson.TypeReference|com.google.gson.reflect.TypeToken|
-|多态 |@com.fasterxml.jackson.annotation.JsonTypeInfo(use=)|com.alibaba.fastjson.serializer.SerializerFeature#WriteClassName|         |
-|带参构造函数|@com.fasterxml.jackson.annotation.JsonCreator & @com.fasterxml.jackson.annotation.JsonProperty(value=)|@com.alibaba.fastjson.annotation.JSONCreator & @com.alibaba.fastjson.annotation.JSONField(name=)|built-in|
+|注释 |JsonParser.Feature#ALLOW_COMMENTS|Feature#AllowComment|built-in|
+|单引号|JsonParser.Feature#ALLOW_SINGLE_QUOTES|Feature#AllowSingleQuotes,SerializerFeature#UseSingleQuotes|built-in|
+|泛型 |TypeReference|TypeReference|TypeToken|
+|多态 |@JsonTypeInfo(use=)|SerializerFeature#WriteClassName|         |
+|带参构造函数|@JsonCreator & @JsonProperty(value=)|@JSONCreator & @JSONField(name=)|built-in|
 |引用|      |"$ref":"$.path"||
-|别名|@com.fasterxml.jackson.annotation.JsonProperty(value=) or @com.fasterxml.jackson.databind.annotation.JsonNaming|@com.alibaba.fastjson.annotation.JSONField(name=)|@com.google.gson.annotations.SerializedName(alternate=)|
+|别名|@JsonProperty(value=) or @JsonNaming|@JSONField(name=)|@SerializedName(alternate=)|
 |日期格式|ISO8601|ISO8601|ISO8601|
 |自定义|JsonSerializer、JsonDeserializer、@JsonSerialize、@JsonDeserialize、TypeResolverBuilder、@JsonTypeResolver|       |@JsonAdapter、TypeAdapter、JsonSerializer、JsonDeserializer|
 
@@ -29,4 +29,5 @@ _FastJson使用'@type'来标识类型，可以使用com.alibaba.fastjson.JSON#se
 
 _Gson可以利用GsonBuilder.setFieldNamingStrategy来设置别名处理。   
 Gson利用Unsafe来初始化对象，不需要特殊标识就可以处理带参构造函数的反序列化。   
-可使用GsonGsonBuilder.setDateFormat来设置默认的日期格式。_
+可使用GsonGsonBuilder.setDateFormat来设置默认的日期格式。   
+Gson对多态支持不友好，需要注册并实现com.google.gson.TypeAdapter_
