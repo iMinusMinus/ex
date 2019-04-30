@@ -75,19 +75,20 @@ verify=>operation: EasyMock.verify|test
 s->m->ts->when->then->times->replay->test->verify->e
 ```
 
-_EasyMock要求被注入的测试类必须手动生成测试对象，Mockito可自动生成测试对象。EasyMock严格按照replay、verify流程，Mockito无需replay。_  
-_Mockito的部分Mock需要手动生成对象，EasyMock不支持部分mock。_  
+_EasyMock要求被注入的测试类必须手动生成测试对象，Mockito无论是Mock还是Spy都可自动生成对象（类型是接口或抽象类时仍需手动生成）。
+_EasyMock严格按照replay、verify流程，Mockito无需replay。_  
+_EasyMock不支持部分mock。_  
 _EasyMock和Mockito都支持任意参数的mock，同时都要求同一个方法只要有一个是任意参数时，其它参数也必须是任意参数，而不能指定。_
 
 ```java
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.class)//MockitoAnnotations.initMocks(this);
 public class MockTest {
 
     @InjectMocks
     private TestSubject ts;// = new TestSubject();
     
     @Spy
-    private InjectableMockableObject imo = new InjectableMockableObject();
+    private InjectableMockableObject imo;// = new InjectableMockableObject();
     
     @Mock
     private MockableObject mo;
