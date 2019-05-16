@@ -3,18 +3,18 @@
 ## 数据交换格式
 |    |protobuf|hessian|native|xml|json|
 |:---|:-------|:------|:-----|:--|:---|
-|可读性|      |       |       |   |    |
+|可读性|      |       |       |   |&#8730;|
 |序列化/反序列化速度|        |       |       |   |    |
 |大小|        |       |      |   |     |
-|泛型|        |       |      |    |    |
-|多态|        |       |      |    |    |
-|跨语言|      |       |      |    |    |
+|泛型|        |       |      |    |&#8730;|
+|多态|        |       |      |    |&#8730;|
+|跨语言|      |       |      |    |&#8730;|
 
 ## JSON
 |     |Jackson(com.fasterxml.jackson) |FastJson(com.alibaba.fastjson)|Gson(com.google.gson)|
 |:----|:-------|:-----|:-------|
 |注释 |JsonParser.Feature#ALLOW_COMMENTS|Feature#AllowComment|built-in|
-|单引号|JsonParser.Feature#ALLOW_SINGLE_QUOTES|Feature#AllowSingleQuotes,SerializerFeature#UseSingleQuotes|built-in|
+|单引号|JsonParser.Feature#ALLOW_SINGLE_QUOTES|Feature#AllowSingleQuotes,   SerializerFeature#UseSingleQuotes|built-in|
 |泛型 |TypeReference|TypeReference|TypeToken|
 |多态 |@JsonTypeInfo(use=)|SerializerFeature#WriteClassName|         |
 |带参构造函数|@JsonCreator & @JsonProperty(value=)|@JSONCreator & @JSONField(name=)|built-in|
