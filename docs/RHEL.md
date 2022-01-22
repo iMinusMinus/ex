@@ -353,6 +353,20 @@ sudo grub2-set-default 'Windows Boot Manager (on /dev/nvme0n1p1)'
 sudo reboot
 ```
 
+## 更新
+
+操作系统内核和软件包都需要定期更新来获取更新功能，同时降低安全风险。
+
+```sh
+sudo yum update
+# 重启后的GRUB界面出现多个操作系统启动项，可以考虑删除旧的
+rpm -q kernel
+# kernel-4.18.0-348.2.1.el8_5.x86_64
+# kernel-4.18.0-348.7.1.el8_5.x86_64
+sudo yum remove kernel-4.18.0-348.2.1.el8_5.x86_64
+sudo reboot
+```
+
 
 0. [redhat package](https://access.redhat.com/downloads/content/package-browser)
 1. [EPEL](https://fedoraproject.org/wiki/EPEL/zh-cn)
