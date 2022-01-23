@@ -359,11 +359,28 @@ sudo reboot
 
 ```sh
 sudo yum update
-# 重启后的GRUB界面出现多个操作系统启动项，可以考虑删除旧的
+### 重启后的GRUB界面出现多个操作系统启动项，可以考虑删除旧的 ###
 rpm -q kernel
 # kernel-4.18.0-348.2.1.el8_5.x86_64
 # kernel-4.18.0-348.7.1.el8_5.x86_64
 sudo yum remove kernel-4.18.0-348.2.1.el8_5.x86_64
+### 可选删除/boot下旧文件
+# sudo rm -rf /boot/config-4.18.0-348.2.1.el8_5.x86_64
+# sudo rm -rf /boot/initramfs-4.18.0-348.2.1.el8_5.x86_64.img
+# sudo rm -rf /boot/initramfs-4.18.0-348.2.1.el8_5.x86_64kdump.img
+# sudo rm -rf /boot/System.map-4.18.0-348.2.1.el8_5.x86_64
+# sudo rm -rf /boot/vmlinuz-4.18.0-348.2.1.el8_5.x86_64
+# sudo rm -rf /boot/.vmlinuz-4.18.0-348.2.1.el8_5.x86_64.hmac
+# sudo rm -rf /boot/symvers-4.18.0-348.2.1.el8_5.x86_64.gz && rm -rf /lib/modules/4.18.0-348.2.1.el8_5.x86_64/symvers.gz
+
+### 删除grub搜索文件
+sudo ls -alh /boot/loader/entries/
+# 91ee24112dd64dfd9910405658fd0dfe-0-rescue.conf
+# 91ee24112dd64dfd9910405658fd0dfe-4.18.0-348.2.1.el8_5.x86_64.conf
+# 91ee24112dd64dfd9910405658fd0dfe-4.18.0-348.7.1.el8_5.x86_64.conf
+sudo rm -rf /boot/loader/entries/91ee24112dd64dfd9910405658fd0dfe-4.18.0-348.2.1.el8_5.x86_64.conf
+
+### 重启
 sudo reboot
 ```
 
