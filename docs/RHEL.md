@@ -88,6 +88,7 @@ EPEL(Extra Packages for Enterprise Linux)是社区志愿者为RHEL系统(及其�
 
 ```sh
 # 安装软件包
+# yum install epel-release
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 # 安装完毕后"/etc/yum.repos.d/"下有epel相关的存储库了
 ls -alh /etc/yum.repos.d/
@@ -109,7 +110,21 @@ sudo sed -e 's|^metalink=|#metalink=|g' \
          /etc/yum.repos.d/epel.repo
 ```
 
-4. WIFI
+4. elrepo.repo
+
+ELRepo项目作为企业级Linux的软件包仓库，由志愿者维护，主要聚焦于硬件驱动相关的软件包，如文件系统驱动、图像驱动、网络驱动、声卡驱动、摄像头和视频驱动等。
+
+```sh
+sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+##### RHEL7/CentOS7: sudo yum install https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm
+sudo yum install https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm
+sudo yum --enablerepo=elrepo search kmod-nvidia
+# sudo yum --enablerepo=elrepo-extras search
+# sudo yum --enablerepo=elrepo-testing install
+# sudo yum --enablerepo=elrepo-kernel install
+```
+
+5. WIFI
 
 使用有线网卡，而且没有或不使用无线网卡的可以跳过此步骤。
 安装时可以联网，最小安装后WIFI可能无法使用！
@@ -171,7 +186,7 @@ wsl --unmount \\.\PHYSICALDRIVE0
 wsl --shutdown
 ```
 
-5. GUI
+6. GUI
 
 如果使用启动镜像最小化安装，启动后是没有图形界面的。
 
@@ -270,7 +285,7 @@ drwx------. 3 root root 2.0K 12月 17 19:42 redhat
 ```
 
 由于Linux缺乏编辑BCD的工具，回到新安装的Windows系统，下载bootice，运行，然后选择加载当前系统BCD，在智能模式下，将Windows启动分区设置到原来的Windows分区，最后保存系统设置退出程序，重启便可以回到原来的Windows系统。
-![bootice BCD](https://github.com/iMinusMinus/ex/blob/master/images/BCD.png?raw=true)
+![bootice BCD](/images/BCD.png?raw=true)
 虽然将原来的Windows系统找回变得可启动，但是Linux的GRUB2启动选项并没有Windows菜单。
 每次都通过设置UEFI启动顺序来控制使用哪个系统没有GRUB2菜单选择方便。
 此时需要再登入Linux系统
@@ -389,4 +404,6 @@ sudo reboot
 1. [EPEL](https://fedoraproject.org/wiki/EPEL/zh-cn)
 2. [EPEL mirros](https://admin.fedoraproject.org/mirrormanager/mirrors/EPEL)
 3. [EPEL ustc mirrors](http://mirrors.ustc.edu.cn/help/epel.html)
-4. [wsl2-mount-disk](https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-mount-disk)
+4. [ELRepo](http://elrepo.org/tiki/HomePage)
+5. [ELRepo tuna](https://mirrors.tuna.tsinghua.edu.cn/help/elrepo/)
+6. [wsl2-mount-disk](https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-mount-disk)
