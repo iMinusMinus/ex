@@ -205,6 +205,14 @@ systemctl isolate graphical.target
 # reboot
 ```
 
+7. 音视频
+
+默认的Totem视频播放器无法打开mp4文件，可以通过安装插件来解决。
+
+```sh
+sudo yum install gstreamer1-libav.x86_64
+```
+
 ## 与Windows系统互通
 
 1. Windows文件格式读写
