@@ -213,7 +213,7 @@ timeline
 | ~~nullDC~~    | https://github.com/skmp/nullDC             | 2015   | ?     | ?    | C++, C                | reicast                                                  |
 | REDREAM       | https://redream.io                         | 2019   | 2.8M  | ?    | ?                     |                                                          |
 | ~~reicast~~   | https://github.com/skmp/reicast-emulator   | 2020   | 3.7M  | LGPL | C++, C                | https://reicast.emudev.org                               |
-| ~~Dreamemu~~  | http://www.dreamemu.net                    | 2023   | 14.4M | ?    | C, C++                | https://github.com/bramtechs/dream-emu                   |
+| ~~Dreamemu~~  | http://www.dreamemu.net                    | 2023   | 0.2M  | ?    | C, C++                | https://github.com/bramtechs/dream-emu                   |
 | Project64     | https://www.pj64-emu.com                   | -      | 4.2M  | GPL  | C++                   | https://github.com/project64/project64                   |
 | MegaN64       | https://github.com/jdbcdev/MegaN64         | 2019   | ?     | GPL  | C, C++, Java          | Mupen64Plus                                              |
 | Mupen64Plus   | https://mupen64plus.org                    | -      | 2.6M  | ?    | C, C++                | https://github.com/mupen64plus                           |
