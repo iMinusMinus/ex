@@ -244,6 +244,8 @@ Genesis依赖FBNeo等、Saturn依赖Yabause等； PSP依赖PPSSPP等。
 如果是Mac系统，也可以考虑OpenEmu。
 
 而Mednafen适合定制，不适合一般玩家上手玩。它使用了Higan的libco，其Windows版本依赖MinGW，需命令行启动：mednafen -force_module nes Contra (USA).nes。
+对于Windows系统，因路径含有":"，最好将mednafen.cfg的filesys.untrusted_fip_check设置为0。
+Mednafen在模拟Sega Saturn时需要名为sega_101.bin额外的BIOS放到firmware目录下。
 
 *Higan需先使用icarus制作rom，然后创建模拟器并加载rom，但rom可能加载失败。*
 
@@ -265,7 +267,7 @@ Genesis依赖FBNeo等、Saturn依赖Yabause等； PSP依赖PPSSPP等。
 
 任天堂SNES推荐Snes9x和bsnes，它们都不支持中文，Snes9x音效依赖DirectX9（高版本Windows为更高版本DirectX）。ZSNES界面太旧，字体显示不佳，鼠标操作飘。
 
-世嘉Genesis、GC模拟器有FBAlpha，它使用MinGW来支持Windows系统，但未提供下载地址，可以使用Gens，虽然它无法切换中文。
+世嘉Genesis、GC模拟器有FBAlpha，它使用MinGW来支持Windows系统，但未提供下载地址，可以使用Gens，虽然它无法切换中文，且自定义快捷键也未能生效。
 
 任天堂NES模拟器推荐Nestopia。VirtualNES下载的程序无法直接运行；FCEUX使用Lua虚拟机，不支持中文；Nesoid仅支持Android；Jnes显示模糊、键盘鼠标未能操作。
 
