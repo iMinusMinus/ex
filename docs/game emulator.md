@@ -87,7 +87,7 @@ timeline
 | pSX                      | PSX, PS1      | N                                                  | N                                     |
 | PPSSPP                   | PSP           | N                                                  | N                                     |
 | JPCSP                    | PSP           | N                                                  | N                                     |
-| Yabuse                   | N             | N                                                  | Saturn                                |
+| Yabause                  | N             | N                                                  | Saturn                                |
 | SSF                      | N             | N                                                  | Saturn                                |
 | Snes9x                   | N             | SNES                                               | N                                     |
 | ZSNES                    | N             | SNES                                               | N                                     |
@@ -175,7 +175,7 @@ timeline
 | BGB                      | Y       | N     | N     | N       | N   |
 | TGB Dual                 | Y       | N     | N     | N       | N   |
 | GBCoid                   | N       | N     | N     | Y       | N   |
-| Yabuse                   | Y       | Y     | Y     | N       | N   |
+| Yabause                  | Y       | Y     | Y     | N       | N   |
 | SSF                      | Y       | N     | N     | N       | N   |
 | PPSSPP                   | Y       | N     | N     | Y       | N   |
 | JPCSP                    | Y       | Y     | Y     | N       | N   |
@@ -254,7 +254,7 @@ Mednafen在模拟Sega Saturn时需要名为sega_101.bin额外的BIOS放到firmwa
 
 *在使用ePSXe的2.05版本如果发生crash，则可以尝试将CPU超频设置成x1来解决。*
 
-*Yabuse使用Qt框架，加载BIN/CUE可能Crash。*
+*Yabause使用Qt框架，加载BIN/CUE可能Crash，运行时CPU占用率非常高*
 
 任天堂GC推荐Dolphin，它支持中文。
 
