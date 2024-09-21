@@ -44,6 +44,7 @@ timeline
 | Mednafen                 | PSX, PS1      | NES, GB, GBC, SNES, Virtual Boy, GBA               | Genesis, Game Gear, Saturn            |
 | higan                    | N             | NES, GB, GBC, SNES, GBA                            | Genesis, Game Gear                    |
 | WhineCube                | N             | GC, Wii                                            | N                                     |
+| Dolphin                  | N             | GC, Wii                                            | N                                     |
 | Mesen                    | N             | NES, GB, GBC, SNES, GBA                            | Sega Master System, Game Gear         |
 | RPCS3                    | PS 3          | N                                                  | N                                     |
 | PCSX2                    | PS 2          | N                                                  | N                                     |
@@ -55,7 +56,6 @@ timeline
 | iDeaS                    | N             | NDS                                                | N                                     |
 | AseDS                    | N             | NDS                                                | N                                     |
 | GB Enhanced+             | N             | GB, GBC, GBA                                       | N                                     |
-| Dolphin                  | N             | GC                                                 | N                                     |
 | Gcube                    | N             | GC                                                 | N                                     |
 | GameBoid                 | N             | GBA                                                | N                                     |
 | John GBA                 | N             | GBA                                                | N                                     |
@@ -252,11 +252,11 @@ Mednafen在模拟Sega Saturn时需要名为sega_101.bin额外的BIOS放到firmwa
 
 *Mesen需要下载额外的BIOS才能模拟GBA，其Windows版本依赖.NET框架，CPU使用率和内存使用率较Mednafen高。*
 
-*Mupen64Plus的Windows 2.5.9版本依赖msvcr120.dll，较新版本Windows即便复制本机dll过去仍可能无法启动*
-
 *在使用ePSXe的2.05版本如果发生crash，则可以尝试将CPU超频设置成x1来解决。*
 
 *Yabuse使用Qt框架，加载BIN/CUE可能Crash。*
+
+任天堂GC推荐Dolphin，它支持中文。
 
 任天堂NDS推荐NO$GBA，它不支持中文，也不支持录制。DeSmuME可以直接打开压缩包，不支持中文，且CPU占用率较高。
 
@@ -264,7 +264,7 @@ Mednafen在模拟Sega Saturn时需要名为sega_101.bin额外的BIOS放到firmwa
 
 世嘉DC推荐REDREAM，官方网站描述支持GDI、BIN/CUE、CHD或CDI镜像，实际（1.5.0版本）无法识别BIN/CUE。而Dreamemu无法加载某些GDI/BIN。
 
-任天堂N64推荐Project64，它支持繁体中文，退出时有出现Crash。
+任天堂N64推荐Project64，它支持繁体中文，退出时有出现Crash。而Mupen64Plus的Windows 2.5.9版本依赖msvcr120.dll，较新版本Windows即便复制本机dll过去仍可能无法启动！
 
 任天堂SNES推荐Snes9x和bsnes，它们都不支持中文，Snes9x音效依赖DirectX9（高版本Windows为更高版本DirectX）。ZSNES界面太旧，字体显示不佳，鼠标操作飘。
 
