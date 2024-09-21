@@ -5,18 +5,19 @@
 ```mermaid
 timeline 
   title 部分游戏主机简史
-  section 3G
-    1983: 任天堂 红白机Famicom : 世嘉 SG-100
+  section 3G(8位机)
+    1983: 任天堂 红白机Famicom : 世嘉 SG-1000
     1985: 任天堂 Nintendo Entertainment System
-  section 4G
+    1986: 世嘉 Sega Mark/Sega Master System
+  section 4G(16位机)
     1988: 世嘉 Genesis/MegaDrive
-    1989: 任天堂 Game Boy : 任天堂 Game Boy Color
+    1989: 任天堂 Game Boy(8位机) : 任天堂 Game Boy Color(8位机)
     1990: 任天堂 Super Famicon/Super Nintendo Entertainment System : 世嘉 Game Gear
-  section 5G
+  section 5G(32位机)
     1994: 世嘉 Saturn : 索尼 PlayStation : 索尼 PlayStation Portable
     1995: 任天堂 Virtual Boy
-    1996: 任天堂 Nintendo 64
-  section 6G
+    1996: 任天堂 Nintendo 64(64位机)
+  section 6G(联机)
     1998: 世嘉 Dreamcast  
     2000: 索尼 PlayStation 2
     2001: 任天堂 Game Boy Advance : 任天堂 Game Cube : 微软 Xbox
@@ -43,7 +44,7 @@ timeline
 | Mednafen                 | PSX, PS1      | NES, GB, GBC, SNES, Virtual Boy, GBA               | Genesis, Game Gear, Saturn            |
 | higan                    | N             | NES, GB, GBC, SNES, GBA                            | Genesis, Game Gear                    |
 | WhineCube                | N             | GC, Wii                                            | N                                     |
-| Mesen-S                  | N             | NES, GB, GBC, SNES                                 | N                                     |
+| Mesen                    | N             | NES, GB, GBC, SNES, GBA                            | Sega Master System, Game Gear         |
 | RPCS3                    | PS 3          | N                                                  | N                                     |
 | PCSX2                    | PS 2          | N                                                  | N                                     |
 | NO$GBA                   | N             | GBA, NDS                                           | N                                     |
@@ -198,7 +199,7 @@ timeline
 | OpenEmu       | https://openemu.org                        | 2024   | 37.7M | ?    | Swift, C, Objective-C |                                                          |
 | Mednafen      | https://mednafen.github.io                 | -      | 6.8M  | GPL  | C++                   |                                                          |
 | higan         | https://github.com/higan-emu/higan         | 2024   | 3.8M  | GPL  | GLSL, C++             |                                                          |
-| Mesen         | https://www.mesen.ca                       | -      | 28.7M | GPL  | C++, C#, C            |                                                          |
+| Mesen         | https://www.mesen.ca                       | -      | 28.7M | GPL  | C++, C#, C            | https://sourceforge.net/projects/mesen.mirror            |
 | RPCS3         | https://rpcs3.net                          | -      | 28.2M | GPL  | C++, C                |                                                          |
 | PCSX2         | https://pcsx2.net                          | -      | 42.7M | GPL  | C++, C                | https://sourceforge.net/projects/pcsx2                   |
 | NO$GBA        | https://www.nogba.com                      | ?      | 0.2M  | ?    | ?                     |                                                          |
@@ -249,7 +250,7 @@ Mednafen在模拟Sega Saturn时需要名为sega_101.bin额外的BIOS放到firmwa
 
 *Higan需先使用icarus制作rom，然后创建模拟器并加载rom，但rom可能加载失败。*
 
-*Mesen的Windows版本依赖.NET框架。*
+*Mesen需要下载额外的BIOS才能模拟GBA，其Windows版本依赖.NET框架，CPU使用率和内存使用率较Mednafen高。*
 
 *Mupen64Plus的Windows 2.5.9版本依赖msvcr120.dll，较新版本Windows即便复制本机dll过去仍可能无法启动*
 
@@ -274,6 +275,7 @@ Mednafen在模拟Sega Saturn时需要名为sega_101.bin额外的BIOS放到firmwa
 
 参考：
 
+0. [RetroPieBIOS](https://github.com/archtaurus/RetroPieBIOS)
 1. [RETRO](https://www.retrostic.com/emulators)
 2. [Console Roms](https://www.consoleroms.com/)
 3. [Game DB](https://indienova.com/gamedb)
