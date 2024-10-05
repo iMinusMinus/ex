@@ -42,8 +42,11 @@ timeline
 | [RetroArch](https://www.retroarch.com)                    | Windows, Linux, MacOS, Android, iOS | PSX, PSP, PS1 | NES, GB, GBC, SNES, VB, N64, GBA, NDS     | MD, GG, SS, DC | -      | 178M  | GPL  | C, C++                | http://www.libretro.com                                  |
 | [OpenEmu](https://openemu.org)                            | MacOS                               | PSX, PSP, PS1 | FC, NES, GB, GBC, SNES, VB, N64, GBA, NDS | MD, GG, SS     | 2024   | 37.7M | ?    | Swift, C, Objective-C |                                                          |
 | [Mednafen](https://mednafen.github.io)                    | Windows, Linux                      | PSX, PS1      | NES, GB, GBC, SNES, VB, GBA               | MD, GG, SS     | -      | 6.8M  | GPL  | C++                   |                                                          |
+| [BizHawk](https://github.com/TASEmulators/BizHawk)        | Windows, *Linux*, MacOS             | PSX           | NES, GB, GBC, SNES, N64, VB, GBA          | SMS, MD, GG, SS| -      | 62.5M | MIT  | C#, C++, C            | http://tasvideos.org/BizHawk.html                        |
 | [higan](https://github.com/higan-emu/higan)               | Windows                             | -             | NES, GB, GBC, SNES, GBA                   | MD, GG         | 2024   | 3.8M  | GPL  | GLSL, C++             |                                                          |
 | [Mesen](https://www.mesen.ca)                             | Windows, Linux                      | -             | NES, GB, GBC, SNES, GBA                   | SMS, GG        | -      | 28.7M | GPL  | C++, C#, C            | https://sourceforge.net/projects/mesen.mirror            |
+| [Kega Fusion](https://kega-fusion.com)                    | Windows, Linux, MacOS               | -             | -                                         | SMS, MD, GG    | -      | 5.6M  | ?    |  ?                    | https://github.com/javiermisol/Kega-Fusion               |
+| [Cemu](https://cemu.info/index.html)                      | Windows, Linux, MacOS               | -             | Wii U                                     | -              | -      | 25M   | MPL  | C++, C                | https://github.com/cemu-project/Cemu                     |
 | [RPCS3](https://rpcs3.net)                                | Windows, Linux                      | PS 3          | -                                         | -              | -      | 28.2M | GPL  | C++, C                |                                                          |
 | [PCSX2](https://pcsx2.net)                                | Windows, Linux, MacOS               | PS 2          | -                                         | -              | -      | 42.7M | GPL  | C++, C                | https://sourceforge.net/projects/pcsx2                   |
 | [NO$GBA](https://www.nogba.com)                           | Windows                             | -             | GBA, NDS                                  | -              | ?      | 0.2M  | ?    | ?                     |                                                          |
@@ -85,9 +88,14 @@ Genesis依赖FBNeo等、Saturn依赖Yabause等； PSP依赖PPSSPP等。
 对于Windows系统，因路径含有":"，最好将mednafen.cfg的filesys.untrusted_fip_check设置为0。
 Mednafen在模拟Sega Saturn时需要名为sega_101.bin额外的[BIOS](https://github.com/archtaurus/RetroPieBIOS) 放到firmware目录下。
 
+与RetroArch类似，BizHawk的模拟器内核也依赖或移植其他开源项目，如NES依赖NESHawk、SNES依赖BSNES、NDS依赖melonDS、N64依赖Mupen64Plus、GBA依赖mGBA、GB和GBC依赖Gambatte，SMS依赖SMSHawk、MD依赖Genplus-gx、SS依赖Saturnus，PSX依赖NymasHock。
+每个模拟器可能有多个核心，可以在核心间进行切换。但在实际运行过程中有些无法打开，有些无法操作，且CPU占用率较高。
+
 *Higan需先使用icarus制作rom，然后创建模拟器并加载rom，但rom可能加载失败。*
 
 *Mesen需要下载额外的BIOS才能模拟GBA，其Windows版本依赖.NET框架，CPU使用率和内存使用率较Mednafen高。*
+
+*Kega Fusion 运行时CPU使用率较高*
 
 *在使用ePSXe的2.05版本如果发生crash，则可以尝试将CPU超频设置成x1来解决。*
 
@@ -115,5 +123,4 @@ Mednafen在模拟Sega Saturn时需要名为sega_101.bin额外的[BIOS](https://g
 1. [RETRO](https://www.retrostic.com/emulators)
 2. [Console Roms](https://www.consoleroms.com/)
 3. [Game DB](https://indienova.com/gamedb)
-4. [the old computer](https://www.theoldcomputer.com/roms/)
-5. [emulator zone](https://www.emulator-zone.com/)
+4. [emulator zone](https://www.emulator-zone.com/)
